@@ -1,14 +1,24 @@
 # my-bookshelf
 
-generated using Luminus version "2.9.11.32"
-
-FIXME
+Simple web application for personal book management.
 
 ## Prerequisites
 
-You will need [Leiningen][1] 2.0 or above installed.
+### DB setup
 
-[1]: https://github.com/technomancy/leiningen
+You need to create db user and database.
+Run following commands from shell:
+```
+createuser --createdb bookworm
+
+createdb -O bookworm my_bookshelf_dev
+createdb -O bookworm my_bookshelf_test
+```
+
+### Web server config
+
+If you want to avoid conflicts with other ring applications running on localhost,
+consider chaning web server port in [config.edn](env/dev/resources/config.edn )
 
 ## Running
 
@@ -16,6 +26,4 @@ To start a web server for the application, run:
 
     lein run
 
-## License
-
-Copyright © 2017 FIXME
+Then go to http://localhost:3000 (or custom port). 
