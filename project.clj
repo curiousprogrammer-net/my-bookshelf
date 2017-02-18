@@ -1,7 +1,7 @@
 (defproject my-bookshelf "0.1.0-SNAPSHOT"
 
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "My Bookshelf clojure web application"
+  :url "http://mybookshelf.io"
 
   :dependencies [[bouncer "1.0.0"]
                  [compojure "1.5.2"]
