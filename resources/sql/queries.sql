@@ -1,21 +1,27 @@
--- :name create-user! :! :n
--- :doc creates a new user record
-INSERT INTO users
-(id, first_name, last_name, email, pass)
-VALUES (:id, :first_name, :last_name, :email, :pass)
+-- TODO: there can be multiple authors -> create separate table!
 
--- :name update-user! :! :n
--- :doc update an existing user record
-UPDATE users
-SET first_name = :first_name, last_name = :last_name, email = :email
+-- :name create-book! :! :n
+-- :doc persists a new book
+INSERT INTO books
+(id, title, author, issued, status)
+ VALUES (:id, :title, :author, :issued, :status)
+
+-- :name update-book! :! :n
+-- :doc update an existing book
+UPDATE books
+SET title = :title, author = :author, issued = :issued, status = :status
 WHERE id = :id
 
--- :name get-user :? :1
--- :doc retrieve a user given the id.
-SELECT * FROM users
+-- :name get-books :? :*
+-- :doc retrieve all books
+SELECT * FROM books
+
+-- :name get-book :? :1
+-- :doc retrieve a book given the id.
+SELECT * FROM books
 WHERE id = :id
 
--- :name delete-user! :! :n
--- :doc delete a user given the id
-DELETE FROM users
+-- :name delete-book! :! :n
+-- :doc delete a book given the id
+DELETE FROM books
 WHERE id = :id

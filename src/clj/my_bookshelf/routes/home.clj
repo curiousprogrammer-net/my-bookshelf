@@ -3,7 +3,7 @@
             [compojure.core :refer [defroutes GET]]
             [java-time :as t]
             [my-bookshelf.layouts.home :as l]
-            [my-bookshelf.model.book :refer [author book]]
+            [my-bookshelf.model.entities :refer [author book]]
             [ring.util.http-response :as response]))
 
 (defn home-page []
