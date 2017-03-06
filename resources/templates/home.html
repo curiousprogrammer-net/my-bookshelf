@@ -6,3 +6,19 @@
   </div>
 </div>
 {% endblock %}
+
+<!-- List books -->
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="content">
+            {% for book in books %}
+            <li>
+                <h3>{{book.title}}</h3>
+                <p><i>Authors</i>: {{book.authors}}</p>
+                <p><i>Status</i>: {{book.status}}</p>
+                <time><i>Issued</i>:{{book.issued|date:"yyy-MM-dd"}}</time>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
