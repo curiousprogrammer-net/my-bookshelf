@@ -5,9 +5,18 @@
             {% for book in books %}
             <li>
                 <h3>{{book.title}}</h3>
-                <p><i>Authors</i>: {{book.authors}}</p>
                 <p><i>Status</i>: {{book.status}}</p>
                 <time><i>Issued</i>: {{book.issued|date:"yyyy-MM-dd"}}</time>
+                <div><p><i>Authors</i>: </p>
+                    <!-- TODO: add CSS class for authors list -->
+                    <ul>
+                    {% for author in book.authors %}
+                        <li>
+                            {{author.last-name}}, {{author.first-name}}
+                        </li>
+                    {% endfor %}
+                    </ul> 
+                </div>
             </li>
             {% endfor %}
         </ul>
