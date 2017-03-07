@@ -24,7 +24,7 @@
 
 (defn home-page []
   ;; TODO remove hardcoded data
-  (l/render-home books))
+  (l/render-home (db/get-books)))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
