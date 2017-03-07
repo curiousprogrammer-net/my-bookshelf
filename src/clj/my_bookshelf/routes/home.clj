@@ -1,17 +1,19 @@
 (ns my-bookshelf.routes.home
-  (:require [clojure.java.io :as io]
-            [compojure.core :refer [defroutes GET POST]]
-            [java-time :as t]
-            [my-bookshelf.layouts.home :as l]
-            [my-bookshelf.model.entities :refer [author book]]
-            [ring.util.http-response :as response]
-            [my-bookshelf.db.core :as db]))
+  (:require
+   [clojure.java.io :as io]
+   [compojure.core :refer [defroutes GET POST]]
+   [java-time :as t]
+   [my-bookshelf.db.core :as db]
+   [my-bookshelf.layouts.home :as l]
+   [my-bookshelf.model.entities :refer [author book]]
+   [ring.util.http-response :as response]
+   [my-bookshelf.utils.date-utils :refer [to-date]]))
 
 (def books [(book
              :title "Clojure Applied"
              :authors [(author :first-name "Ben" :last-name "Vandgrift")
                        (author :first-name "Alex" :last-name "Miller")]
-             :issued (t/local-date 2015 9 1)
+             :issued (to-date (t/local-date 2015 9 1) "UTC")
              :status "Reading")])
 
 (defn save-book!

@@ -27,7 +27,9 @@
                  [ring/ring-core "1.5.1"]
                  [ring/ring-defaults "0.2.3"]
                  [selmer "1.10.6"]
-                 [clojure.java-time "0.2.2"]]
+                 [clojure.java-time "0.2.2"]
+                 [expectations "2.2.0-beta1"]
+                 [lein-expectations "0.0.8"]]
 
   :min-lein-version "2.0.0"
 

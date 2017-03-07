@@ -1,12 +1,3 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="row">
-  <div class="col-sm-12">
-    {{docs|markdown}}
-  </div>
-</div>
-{% endblock %}
-
 <!-- List books -->
 <div class="row">
     <div class="col-sm-12">
@@ -16,7 +7,7 @@
                 <h3>{{book.title}}</h3>
                 <p><i>Authors</i>: {{book.authors}}</p>
                 <p><i>Status</i>: {{book.status}}</p>
-                <time><i>Issued</i>:{{book.issued|date:"yyy-MM-dd"}}</time>
+                <time><i>Issued</i>: {{book.issued|date:"yyyy-MM-dd"}}</time>
             </li>
             {% endfor %}
         </ul>
