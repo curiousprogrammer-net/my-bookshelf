@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Add Book button -->
+<div class="" margin-bottom="50px">
+<a href="/add-book"><button type="button" class=".btn">Add Book</button></a>
+</div>
+
 <!-- List books -->
+<br />
+<h2>List of Books</h2>
 <div class="row">
     <div class="col-sm-12">
         <ul class="content">
             {% for book in books %}
             <li>
                 <h3>{{book.title}}</h3>
-                <p><i>Status</i>: {{book.status}}</p>
+                <i>Status</i>: {{book.status}} <br />
                 <time><i>Issued</i>: {{book.issued|date:"yyyy-MM-dd"}}</time>
-                <div><p><i>Authors</i>: </p>
+                <div><i>Authors</i>:
                     <!-- TODO: add CSS class for authors list -->
                     <ul>
                     {% for author in book.authors %}
