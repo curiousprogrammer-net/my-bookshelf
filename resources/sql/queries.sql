@@ -52,3 +52,18 @@ WHERE id = :id
 -- :doc delete an author given the id
 DELETE FROM authors
 WHERE id = :id
+
+
+-- :name get-book-authors :? :*
+-- :doc retrieve details about all authors of given book
+SELECT a.*
+FROM authors a JOIN books_authors ba on a.id = ba.author_id
+WHERE ba.book_id = :book-id
+
+-- :name get-books-with-authors :? :*
+-- :doc retrieve details about all authors of given book
+SELECT b.*, a.*
+FROM books b
+  JOIN books_authors ba ON b.id = ba.book_id
+  JOIN authors a ON a.id = ba.author_id
+
