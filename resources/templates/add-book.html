@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Add new book form -->
 <div class="row">
     <div class="col-sm-12">
@@ -7,11 +6,8 @@
             <div class="form-group">
                 {% csrf-field %}
                 <p>
-                    Name:
-                    <input class="form-control"
-                           type="text"
-                           name="title"
-                           value="{{value}}" />
+                    <label for="title">Title: </label>
+                    <input id="title" class="form-control" type="text" name="title" value="{{value}}" />
                 </p>
                 <!-- TODO: add authors input field, issued simple input (replace later with calendar widget),
                            status combo box -->
@@ -19,16 +15,42 @@
                 <div class="alert alert-danger">{{errors.name|join}}</div>
                 {% endif %}
                 <p>
-                    Message:
-                    <textarea class="form-control"
-                              rows="4"
-                              cols="50"
-                              name="message"></textarea>
+                    <label for="issued">Issued: </label>
+                    <input id="issued" name="issued" type="date" />
                 </p>
+
+                <p>
+                    <label for="status">Status: </label>
+                    <input id="status" name="status" type="text" list="status-list" />
+                    <datalist id="status-list">
+                        <!-- A book that I already have, but not necessarily want to read immediately -->
+                        <option value="New" />
+                        <!-- A book that I'm reading right now -->
+                        <option value="Reading" />
+                        <!-- A book that I want to read in a near future -->
+                        <option value="To Read" />
+                        <!-- A book that I've already read -->
+                        <option value="Finished" />
+                        <!-- A published book that I don't have but I'd like to have / buy. -->
+                        <option value="Wish list" />
+                        <!-- An unpublished book that looks interesting and I want to track it down.
+                           When it's published I might want to buy it.-->
+                        <option value="Watching" />
+                    </datalist>
+                </p>
+
+                <p>
+                    <label for="authors">Authors: </label>
+                    <textarea id="authors" rows="4" cols="50" name="authors"
+                              placeholder="Put each author on a new line, e.g. for Joy of Clojure:
+Micheal Fogus
+Chris House"></textarea>
+                </p>
+
                 {% if errors.message %}
                 <div class="alert alert-danger">{{errors.message|join}}</div>
                 {% endif %}
-                <input type="submit" class="btn btn-primary" value="comment" />
+                <input type="submit" class="btn btn-primary" value="Add book" />
             </div>
         </form>
     </div>

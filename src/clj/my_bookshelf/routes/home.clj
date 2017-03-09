@@ -1,5 +1,7 @@
 (ns my-bookshelf.routes.home
-  (:require [clojure.java.io :as io]
+  (:require [bouncer.core :as b]
+            [bouncer.validators :as v]
+            [clojure.java.io :as io]
             [compojure.core :refer [defroutes GET POST]]
             [java-time :as t]
             [my-bookshelf.db.core :as db]
@@ -8,11 +10,21 @@
             [my-bookshelf.utils.date-utils :refer [to-date]]
             [ring.util.http-response :as response]))
 
-(defn save-book!
-  "Persists new boook"
+(defn- validate-book
+  [book]
+  (first (b/validate
+          book
+          :title v/required)))
+
+(defn- save-book!
+  "Persists new book defined by a form params in request.
+  Book must be valid."
   [{:keys [params]}]
-  ;; TODO: save new book
-)
+  (if-let [errors (validate-book params)]
+    (response/bad-request {:errors errors})
+    (do
+      (db/create-book! (m/book params))
+      (response/see-other "/"))))
 
 (defn home-page []
   (l/render "home.html"  {:books (m/books-with-authors (db/get-books-with-authors))}))

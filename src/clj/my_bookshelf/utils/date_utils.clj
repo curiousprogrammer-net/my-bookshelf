@@ -6,6 +6,16 @@
 ;;; timezone that should be used for every date / time related data in whole application
 (def timezone (java.time.ZoneId/of "UTC"))
 
+(defn convert-date
+  "Convert date from string representation 'yyyy-MM-dd' to the java.util.Date.
+  Do nothing if date is not string."
+  [date]
+  (if (string? date)
+    (clojure.instant/read-instant-date date)
+    ;; If it's not string we assume that it's already java.util.Date.
+    ;; This also handles the `nil` case.
+    date))
+
 (defn to-date
   "Converts java.time.LocalDate to the java.util.Date.
   Check http://stackoverflow.com/questions/22929237/convert-java-time-localdate-into-java-util-date-type."

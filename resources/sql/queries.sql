@@ -3,8 +3,8 @@
 -- :name create-book! :! :n
 -- :doc persists a new book
 INSERT INTO books
-(id, title, author, issued, status)
- VALUES (:id, :title, :author, :issued, :status)
+(id, title, issued, status)
+VALUES (uuid_generate_v4(), :title, :issued, :status)
 
 -- :name update-book! :! :n
 -- :doc update an existing book
@@ -31,7 +31,7 @@ WHERE id = :id
 -- :doc persists a new author
 INSERT INTO authors
 (id, first_name, last_name)
-VALUES (:id, :first-name, :last-name)
+VALUES (uuid_generate_v4(), :first-name, :last-name)
 
 -- :name update-author! :! :n
 -- :doc update an existing author
@@ -64,6 +64,6 @@ WHERE ba.book_id = :book-id
 -- :doc retrieve details about all authors of given book
 SELECT b.*, a.*
 FROM books b
-  JOIN books_authors ba ON b.id = ba.book_id
-  JOIN authors a ON a.id = ba.author_id
+  LEFT JOIN books_authors ba ON b.id = ba.book_id
+  LEFT JOIN authors a ON a.id = ba.author_id
 
